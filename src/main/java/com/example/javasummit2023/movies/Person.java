@@ -23,7 +23,9 @@ import java.util.UUID;
 import org.neo4j.ogm.annotation.GeneratedValue;
 import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
+import org.neo4j.ogm.annotation.typeconversion.Convert;
 import org.neo4j.ogm.id.UuidStrategy;
+import org.neo4j.ogm.typeconversion.UuidStringConverter;
 
 import jakarta.json.bind.annotation.JsonbCreator;
 import jakarta.json.bind.annotation.JsonbProperty;
@@ -34,9 +36,9 @@ import jakarta.json.bind.annotation.JsonbProperty;
 @NodeEntity
 public final class Person {
 
-	@Id
-	@GeneratedValue
-	private Long id;
+	@Id @GeneratedValue(strategy = UuidStrategy.class)
+	@Convert(UuidStringConverter.class)
+	private UUID id;
 
 	private String name;
 
@@ -54,7 +56,7 @@ public final class Person {
 	Person() {
 	}
 
-	public Long getId() {
+	public UUID getId() {
 		return id;
 	}
 
