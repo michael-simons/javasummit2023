@@ -4,8 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Map;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.neo4j.driver.Driver;
@@ -23,12 +21,6 @@ public class MoviesTest {
 
 	@Inject
 	Driver driver;
-
-	@BeforeAll
-	void setupData() {
-		driver.executableQuery("CREATE (n:Movie {title: 'The Matrix'})")
-			.execute();
-	}
 
 	@Test
 	void shouldCreateMovie() {
