@@ -29,7 +29,9 @@ import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Property;
 import org.neo4j.ogm.annotation.Relationship;
+import org.neo4j.ogm.annotation.typeconversion.Convert;
 import org.neo4j.ogm.id.UuidStrategy;
+import org.neo4j.ogm.typeconversion.UuidStringConverter;
 
 /**
  * @author Michael J. Simons
@@ -37,8 +39,9 @@ import org.neo4j.ogm.id.UuidStrategy;
 @NodeEntity
 public final class Movie {
 
-	@Id @GeneratedValue
-	private Long id;
+	@Id @GeneratedValue(strategy = UuidStrategy.class)
+	@Convert(UuidStringConverter.class)
+	private UUID id;
 
 	private String title;
 
@@ -98,7 +101,7 @@ public final class Movie {
 		return this;
 	}
 
-	public Long getId() {
+	public UUID getId() {
 		return id;
 	}
 }
